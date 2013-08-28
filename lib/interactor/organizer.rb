@@ -25,6 +25,8 @@ module Interactor
       end
 
       def perform
+        return interactors if failure?
+
         interactors.each do |interactor|
           instance = interactor.perform(context)
           rollback && break if failure?
